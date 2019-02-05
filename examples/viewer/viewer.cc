@@ -721,6 +721,8 @@ static void Draw(const std::vector<DrawObject>& drawObjects,
   glPolygonMode(GL_BACK, GL_FILL);
 
   glEnable(GL_POLYGON_OFFSET_FILL);
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   glPolygonOffset(1.0, 1.0);
   GLsizei stride = (3 + 3 + 3 + 2) * sizeof(float);
   for (size_t i = 0; i < drawObjects.size(); i++) {
@@ -757,7 +759,7 @@ static void Draw(const std::vector<DrawObject>& drawObjects,
   glPolygonMode(GL_FRONT, GL_LINE);
   glPolygonMode(GL_BACK, GL_LINE);
 
-  glColor3f(0.0f, 0.0f, 0.4f);
+  glColor4f(0.0f, 0.0f, 0.0f, 0.0f);
   for (size_t i = 0; i < drawObjects.size(); i++) {
     DrawObject o = drawObjects[i];
     if (o.vb_id < 1) {
